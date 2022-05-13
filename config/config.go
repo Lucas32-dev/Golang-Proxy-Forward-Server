@@ -1,6 +1,8 @@
 package config
 
 import (
+	"time"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -18,7 +20,11 @@ func New() Config {
 
 	// Create fiber config
 	fiberConfig := fiber.Config{
-		GETOnly: true,
+		BodyLimit:        3 * 1024 * 1024,
+		ReadTimeout:      time.Minute,
+		WriteTimeout:     time.Minute,
+		DisableKeepalive: true,
+		AppName:          "Golang Proxy Forward server",
 	}
 
 	// Return config
